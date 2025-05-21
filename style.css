@@ -1,0 +1,1164 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1C2541; /* Darker shade from initial contrast improvement */
+    color: #F0F0F0; /* Main Text Color: Light Grey/White */
+    line-height: 1.8; /* Slightly increased line height for readability */
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+    position: relative;
+}
+
+/* Neural Network Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background-color: #1C2541;
+    opacity: 0.8;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(rgba(137, 166, 212, 0.3) 2px, transparent 2px),
+        radial-gradient(rgba(70, 170, 225, 0.2) 2px, transparent 2px);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -9;
+    background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.03) 2px,
+            rgba(0, 255, 255, 0.03) 4px
+        );
+    animation: neural-pulse 8s infinite ease-in-out;
+    pointer-events: none;
+}
+
+/* Neural network node connections */
+.neural-connections {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -8;
+    pointer-events: none;
+    background-image: 
+        linear-gradient(90deg, transparent 95%, rgba(137, 166, 212, 0.1) 50%),
+        linear-gradient(transparent 95%, rgba(70, 170, 225, 0.1) 50%);
+    background-size: 30px 30px;
+}
+
+@keyframes neural-pulse {
+    0%, 100% {
+        opacity: 0.5;
+        background-size: 100px 100px;
+    }
+    50% {
+        opacity: 0.8;
+        background-size: 120px 120px;
+    }
+}
+
+/* Neural network animated connections */
+@keyframes neural-flow {
+    0% {
+        background-position: 0px 0px, 0px 0px, 0px 0px;
+    }
+    100% {
+        background-position: 100px 100px, 200px 200px, -100px 100px;
+    }
+}
+
+body .neural-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -7;
+    pointer-events: none;
+    background-image: 
+        linear-gradient(45deg, transparent 98%, rgba(0, 255, 255, 0.15) 99%),
+        linear-gradient(-45deg, transparent 98%, rgba(137, 166, 212, 0.1) 99%),
+        linear-gradient(135deg, transparent 98%, rgba(70, 170, 225, 0.05) 99%);
+    background-size: 60px 60px, 50px 50px, 70px 70px;
+    animation: neural-flow 30s infinite linear;
+    opacity: 0.7;
+}
+
+header {
+    background-color: rgba(28, 37, 65, 0.85); /* Slightly transparent version of primary background */
+    backdrop-filter: blur(10px);
+    color: #FFFFFF;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(137, 166, 212, 0.4); /* Lighter Blue Accent Glow */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img#logo-img {
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 50%;
+    padding: 0; /* Removed padding since the logo already has the right shape */
+    background: none; /* Removed background color since the logo has its own */
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.5)); /* Added cyan glow effect */
+}
+
+.logo h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #89A6D4; /* Lighter Blue Accent */
+    text-shadow: 0 0 10px #89A6D4, 0 0 15px #89A6D4;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 30px; /* Increased spacing */
+}
+
+.nav-links a {
+    color: #F0F0F0;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background-color: #89A6D4; /* Lighter Blue Accent */
+    color: #FFFFFF; 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.cta-button-nav {
+    background-color: #89A6D4; /* Lighter Blue Accent */
+    color: #FFFFFF; 
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.cta-button-nav:hover {
+    background-color: #6082B6 !important; /* Previous primary, now darker hover */
+    color: #FFFFFF !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #89A6D4;
+}
+
+/* Hero Section */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem; /* Adjusted bottom padding */
+    position: relative;
+    background-color: #1C2541; /* Fallback, Vanta will overlay this */
+    overflow: visible; /* Changed from hidden to allow glow to extend downwards */
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* At the very bottom of the hero section */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Height of the line itself */
+    background-color: rgba(70, 170, 225, 0.6); /* Slightly more opaque line */
+    /* Initial box-shadow state */
+    box-shadow: 0 3px 12px 1px rgba(70, 170, 225, 0.75),  
+                0 12px 30px 8px rgba(70, 170, 225, 0.45), 
+                0 25px 60px 15px rgba(70, 170, 225, 0.25);
+    z-index: -1; /* Keep behind parent's content (like Vanta canvas) */
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* #particle-canvas div is no longer used for our custom particles 
+   Vanta will attach to #hero or its own canvas. Styles for it can be removed or ignored. */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    background-color: rgba(28, 37, 65, 0.75);
+    padding: 4rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-logo {
+    margin: 0 auto 2.5rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.4) 0%,
+        rgba(137, 166, 212, 0.2) 40%,
+        rgba(28, 37, 65, 0) 70%
+    );
+    border-radius: 50%;
+    z-index: 0;
+    animation: hero-glow-pulse 5s ease-in-out infinite;
+}
+
+.hero-logo-img {
+    height: 120px;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.7));
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes hero-glow-pulse {
+    0% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+    100% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.hero-content .title-group {
+    margin-bottom: 3rem;
+}
+
+/* New styles for the text panel */
+.hero-content .text-panel {
+    background: rgba(70, 170, 225, 0.1);
+    border: 1px solid rgba(70, 170, 225, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    backdrop-filter: blur(5px);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.2),
+        inset 0 0 50px rgba(70, 170, 225, 0.05);
+}
+
+.hero-content .text-panel p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.hero-content .text-panel p:first-child {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+.hero-content .text-panel p:last-child {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+}
+
+/* Update button spacing */
+.hero-content .cta-buttons {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.hero-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3.2rem;
+    margin: 0;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px #89A6D4, 0 0 18px #89A6D4, 0 0 3px #FFFFFF;
+    animation: pulse-glow 2s infinite alternate;
+    line-height: 1.2;
+}
+
+/* Add specific styling for REALITY and VALUE */
+.hero-content h2:first-of-type span {
+    color: rgba(255, 215, 0, 0.85); /* Softer yellow with opacity */
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6), 0 0 18px rgba(255, 215, 0, 0.4), 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.hero-content h2:nth-of-type(2) span {
+    color: rgba(0, 255, 0, 0.75); /* Softer green with opacity */
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 18px rgba(0, 255, 0, 0.3), 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.hero-content h2 + h2 {
+    margin-top: 0.5rem; /* Space between the two headings */
+}
+
+.hero-content p {
+    font-size: 1.35rem;
+    color: #E0E0E0;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.hero-content p + p {
+    margin-top: 1rem; /* Space between paragraphs */
+}
+
+/* Add spacing before the buttons */
+.hero-content .cta-button,
+.hero-content .cta-button-secondary {
+    margin-top: 2rem; /* Increased space before buttons */
+}
+
+.cta-button, .cta-button-secondary {
+    display: inline-block;
+    padding: 1.1rem 2.8rem; /* Slightly larger buttons */
+    margin: 0.75rem; /* Adjusted margin */
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.cta-button {
+    background-color: #89A6D4; /* Lighter Blue Accent */
+    color: #FFFFFF;
+    box-shadow: 0 0 12px #89A6D4, inset 0 0 5px rgba(255,255,255,0.1);
+}
+
+.cta-button:hover {
+    background-color: #6082B6; /* Darker hover */
+    color: #FFFFFF;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 20px #89A6D4, 0 0 8px #FFFFFF, inset 0 0 8px rgba(255,255,255,0.15);
+}
+
+.cta-button-secondary {
+    background-color: transparent;
+    color: #89A6D4; /* Lighter Blue Accent */
+    border-color: #89A6D4;
+}
+
+.cta-button-secondary:hover {
+    background-color: #89A6D4;
+    color: #FFFFFF;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 12px #89A6D4;
+}
+
+/* Section Dividers */
+.section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.divider-line {
+    flex-grow: 1;
+    height: 2px;
+    background: linear-gradient(
+        to var(--direction, right),
+        transparent,
+        rgba(137, 166, 212, 0.7) 50%,
+        rgba(0, 255, 255, 0.4) 100%
+    );
+}
+
+.divider-line:first-child {
+    --direction: right;
+}
+
+.divider-line:last-child {
+    --direction: left;
+}
+
+.divider-logo {
+    margin: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.2) 0%,
+        rgba(28, 37, 65, 0) 70%
+    );
+    border-radius: 50%;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.divider-logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.4) 0%,
+        rgba(137, 166, 212, 0.2) 50%,
+        rgba(28, 37, 65, 0) 80%
+    );
+    border-radius: 50%;
+    z-index: -1;
+    animation: fluid-pulse 4s ease-in-out infinite;
+}
+
+.divider-logo-img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes fluid-pulse {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+    100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* General Content Sections */
+.content-section {
+    padding: 80px 4rem 80px;
+    max-width: 1200px;
+    margin: 0 auto; /* Changed from 50px auto to work with dividers */
+    text-align: center;
+    background: linear-gradient(to bottom, #1C2541 0%, #0A0F1A 100%);
+    border-radius: 25px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(137, 166, 212, 0.2);
+}
+
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 80px;
+    background-image: url('images/qfn_logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.content-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 80px; /* Adjusted space at the very bottom */
+    margin-bottom: 40px; /* Consistent bottom margin */
+}
+
+.content-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem; /* Slightly larger main heading */
+    color: #AEC9E8; /* Brighter heading color */
+    margin-bottom: 2.5rem; /* Increased space after heading */
+    text-shadow: 0 0 12px #AEC9E8, 0 0 20px #AEC9E8; /* Enhanced glow */
+    line-height: 1.4; /* Ensure multiline heading looks good */
+}
+
+.content-section h2 em {
+    font-style: normal; /* Remove default italic */
+    font-weight: 400; /* Lighter weight for the subtitle part */
+    color: #89A6D4; /* Subtler color for subtitle part */
+    display: block; /* Make it a new line */
+    font-size: 2rem; /* Smaller font size for subtitle part */
+    margin-top: 0.5rem;
+}
+
+.content-section p {
+    font-size: 1.2rem; /* Standardized paragraph font size */
+    color: #D0D0D0;
+    margin-bottom: 1.75rem; /* Consistent paragraph spacing */
+    max-width: 850px; /* Wider max-width for readability */
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+.content-section p strong {
+    color: #F0F0F0; /* Brighter color for strong text */
+    font-weight: 700;
+}
+
+.content-section p em {
+    color: #AEC9E8;
+    font-style: italic;
+}
+
+/* Specific adjustments for #concepts section paragraphs */
+#concepts p {
+    margin-bottom: 2rem; /* More space for intro paragraphs */
+}
+
+#concepts p:nth-of-type(2) { /* Second paragraph before grid */
+    margin-bottom: 3rem; /* More space before grid */
+    font-size: 1.25rem;
+    color: #E0E0E0;
+}
+
+#concepts .final-summary {
+    margin-top: 3rem; /* More space before the final paragraph */
+    font-style: normal; /* Remove previous italic */
+    font-size: 1.25rem; /* Slightly larger */
+    color: #AEC9E8; /* Lighter blue for emphasis */
+    padding: 1.5rem;
+    background-color: rgba(58, 80, 107, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(137, 166, 212, 0.25);
+    max-width: 900px;
+}
+
+#concepts .final-summary strong {
+    color: #FFFFFF; /* White for strong in summary */
+}
+
+#concepts .final-summary em {
+    color: #D0D0D0; /* Slightly less bright for em in summary */
+    font-style: italic;
+}
+
+/* Yellow highlight style */
+.highlight-yellow {
+    color: rgba(255, 215, 0, 0.9); /* Slightly brighter and more opaque yellow */
+    text-shadow:
+        0 0 8px rgba(255, 215, 0, 0.7),
+        0 0 15px rgba(255, 215, 0, 0.5),
+        0 0 2px rgba(255, 255, 255, 0.5); /* Subtle white inner glow */
+    font-weight: 600; /* Slightly bolder */
+}
+
+/* Ensure highlight works well within strong tags */
+strong > .highlight-yellow {
+    font-weight: 700; /* Inherit or match strong tag's boldness */
+}
+
+/* Adjustments for highlight within final summary paragraph */
+#concepts .final-summary .highlight-yellow {
+    color: rgba(255, 223, 50, 0.95); /* Slightly adjusted yellow for the panel background */
+    text-shadow:
+        0 0 8px rgba(255, 223, 50, 0.7),
+        0 0 15px rgba(255, 223, 50, 0.5);
+}
+
+#concepts .final-summary strong > .highlight-yellow {
+    color: rgba(255, 223, 50, 0.95); /* Ensure consistency in summary */
+}
+
+/* Concept Grid */
+.concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly wider minmax */
+    gap: 2.5rem; /* Adjusted gap */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.concept-item {
+    background-color: rgba(45, 58, 88, 0.7); /* Darker, more defined panel */
+    padding: 2.5rem; /* More internal padding */
+    border-radius: 20px; /* Softer corners */
+    border: 1px solid rgba(137, 166, 212, 0.35); /* Stronger border */
+    box-shadow: 0 8px 25px rgba(137, 166, 212, 0.1), inset 0 0 15px rgba(137, 166, 212, 0.1); /* Inner/outer shadow */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation-fill-mode: forwards;
+}
+
+.concept-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(137, 166, 212, 0.2), inset 0 0 20px rgba(137, 166, 212, 0.15);
+    border-color: rgba(137, 166, 212, 0.6);
+}
+
+/* Staggered animation for concept items */
+.concept-item:nth-child(1) {
+    animation-name: fadeInSlideUp;
+    animation-duration: 0.6s;
+    animation-delay: 0.2s; 
+}
+.concept-item:nth-child(2) {
+    animation-name: fadeInSlideUp;
+    animation-duration: 0.6s;
+    animation-delay: 0.4s;
+}
+.concept-item:nth-child(3) {
+    animation-name: fadeInSlideUp;
+    animation-duration: 0.6s;
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.concept-item h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #AEC9E8; /* Brighter subheading */
+    margin-bottom: 1.5rem; /* More space below card title */
+    font-size: 1.75rem; /* Larger card title */
+    text-shadow: 0 0 5px #AEC9E8;
+}
+
+.concept-item p {
+    font-size: 1.1rem; /* Slightly larger text in cards */
+    line-height: 1.7;
+    color: #D0D0D0;
+    margin-bottom: 0;
+}
+
+.concept-item p strong {
+    color: #FFFFFF; /* White for strong in cards */
+}
+
+.concept-item p em {
+    color: #AEC9E8;
+}
+
+/* Added styling for lists within concept items */
+.concept-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem;
+}
+
+.concept-item li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 0.65rem;
+    color: #C0C0C0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.concept-item li::before {
+    content: '🔹 ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #89A6D4;
+    font-weight: bold;
+}
+
+/* Mechanics Section */
+.fees-info {
+    background-color: rgba(58, 80, 107, 0.4); /* Secondary Background, translucent */
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem auto;
+    max-width: 600px;
+    border: 1px solid rgba(137, 166, 212, 0.25);
+}
+
+.fees-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.fees-info li {
+    margin-bottom: 0.5rem;
+    color: #D0D0D0;
+}
+
+.fees-info li::before {
+    content: '🔹 '; /* Blue diamond/bullet */
+    color: #89A6D4; /* Lighter Blue Accent */
+    font-weight: bold;
+}
+
+/* Roadmap Grid */
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem; /* Slightly increased gap */
+    margin-top: 3rem; /* More space above grids */
+    text-align: left;
+}
+
+.roadmap-item {
+    background-color: rgba(58, 80, 107, 0.55);
+    padding: 2rem; /* Increased internal padding for cards */
+    border-radius: 12px;
+    border: 1px solid rgba(137, 166, 212, 0.3);
+    position: relative;
+}
+
+.roadmap-item h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #89A6D4; /* Lighter Blue Accent */
+    margin-bottom: 1.25rem; /* Space below card title */
+    border-bottom: 1px solid rgba(137, 166, 212, 0.4);
+    padding-bottom: 0.5rem;
+}
+
+.roadmap-item ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem; /* Space before list items */
+}
+
+.roadmap-item li {
+    margin-bottom: 0.8rem; /* Spacing between list items */
+    color: #C0C0C0;
+    font-size: 0.95rem;
+    position: relative;
+    padding-left: 25px; /* Adjusted for wider icon */
+}
+
+.roadmap-item li::before {
+    content: '💠 '; /* Diamond/crystal icon */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #89A6D4; /* Lighter Blue Accent */
+}
+
+/* CTA Section - Investment */
+.cta-section {
+    background: linear-gradient(135deg, #1C2541 0%, #0A0F1A 100%);
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.cta-logo {
+    margin: 1rem auto 2rem;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.cta-logo::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.4) 0%,
+        rgba(137, 166, 212, 0.2) 40%,
+        rgba(28, 37, 65, 0) 70%
+    );
+    border-radius: 50%;
+    z-index: 0;
+    animation: cta-glow-pulse 6s ease-in-out infinite;
+}
+
+.cta-logo-img {
+    height: 100px;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.6));
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes cta-glow-pulse {
+    0% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+    100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.cta-section h2 {
+    color: #AEC9E8;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px #AEC9E8, 0 0 20px #AEC9E8;
+}
+
+.cta-section p {
+    margin-bottom: 2rem; /* More space before form */
+}
+
+.investment-form {
+    max-width: 500px;
+    margin: 1.5rem auto 0;
+    background-color: rgba(28, 37, 65, 0.75);
+    padding: 2.5rem; /* More padding in form box */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(137, 166, 212, 0.25);
+}
+
+.investment-form input[type="email"] {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 0.9rem 12px; /* Slightly taller input */
+    margin-bottom: 1.5rem; /* More space below input */
+    border-radius: 5px;
+    border: 1px solid #89A6D4;
+    background-color: #1C2541;
+    color: #F0F0F0;
+    font-size: 1rem;
+}
+
+.investment-form input[type="email"]::placeholder {
+    color: #8892b0; /* Lighter placeholder for dark input */
+}
+
+#form-message {
+    margin-top: 1rem;
+    font-weight: bold;
+    /* Color will be set by JS */
+}
+
+/* Footer */
+footer {
+    background-color: rgba(28, 37, 65, 0.95);
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(137, 166, 212, 0.4);
+    box-shadow: 0 -2px 10px rgba(137, 166, 212, 0.25);
+}
+
+.footer-logo {
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo-img {
+    height: 60px;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
+}
+
+.social-links a {
+    color: #89A6D4;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #AEC9E8; /* Even Lighter blue on hover */
+    text-shadow: 0 0 5px #AEC9E8;
+}
+
+/* Keyframe Animations */
+@keyframes pulse-glow {
+    from {
+        text-shadow: 0 0 8px #89A6D4, 0 0 12px #89A6D4, 0 0 2px #FFFFFF;
+    }
+    to {
+        text-shadow: 0 0 12px #89A6D4, 0 0 20px #89A6D4, 0 0 4px #FFFFFF, 0 0 6px rgba(137, 166, 212, 0.5);
+    }
+}
+
+/* New animation for the hero bottom glow */
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 0 3px 12px 1px rgba(70, 170, 225, 0.75),  
+                    0 12px 30px 8px rgba(70, 170, 225, 0.45), 
+                    0 25px 60px 15px rgba(70, 170, 225, 0.25);
+    }
+    50% {
+        box-shadow: 0 4px 16px 2px rgba(70, 170, 225, 0.85), /* Slightly expanded and brighter */
+                    0 15px 38px 10px rgba(70, 170, 225, 0.55), 
+                    0 30px 70px 18px rgba(70, 170, 225, 0.35);
+    }
+}
+
+/* New animations for section backgrounds - Re-adding these */
+@keyframes quantum-foam-bubble {
+    0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+    50% { opacity: 0.7; transform: scale(1.1) rotate(5deg); }
+}
+
+@keyframes slow-pan-grid {
+    0% { background-position: 0 0; }
+    100% { background-position: 100px 100px; }
+}
+
+@keyframes data-stream-flow {
+    0% { background-position: 0 0; transform: skewX(0deg); opacity: 0.5; }
+    50% { background-position: -80px 80px; transform: skewX(-1.5deg); opacity: 0.7; }
+    100% { background-position: -160px 0px; transform: skewX(0deg); opacity: 0.5; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Will implement a mobile menu later if needed */
+    }
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    .hero-content h2 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .content-section h2, .cta-section h2 {
+        font-size: 2rem;
+    }
+    .cta-button, .cta-button-secondary {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+    .concept-grid, .roadmap-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+#vision {
+    margin-top: 0; /* Updated from 60px to work with dividers */
+}
+
+/* Removed Animated particle background for the body (body::before, body::after) */
+
+/* Ensure content within sections with new pseudo-element backgrounds is visible */
+.content-section > *:not(style):not(script) {
+    position: relative;
+    z-index: 1; /* Ensure content is above the z-index 0 pseudo-elements */
+}
+
+/* Vision Section - Quantum/Neural Vibe */
+#vision.content-section {
+    background: #070B14 !important; /* Darker, almost black base, !important to override general .content-section */
+    overflow: hidden; 
+    border: 1px solid rgba(70, 170, 225, 0.1); /* Fainter, more techy border */
+    /* Inherits padding, max-width, margin, text-align, border-radius, position, shadow from .content-section */
+}
+
+#vision.content-section::before,
+#vision.content-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 24px; /* Match parent's border-radius, adjust if border is thick */
+    z-index: 0; 
+}
+
+/* Layer 1: Abstract particles/energy for #vision */
+#vision.content-section::before {
+    background: radial-gradient(circle at 15% 25%, rgba(70, 170, 225, 0.25) 0%, transparent 35%),
+                radial-gradient(circle at 85% 75%, rgba(137, 166, 212, 0.2) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(96, 130, 182, 0.15) 0%, transparent 25%);
+    animation: quantum-foam-bubble 12s infinite ease-in-out alternate;
+}
+
+/* Layer 2: Faint, slow-moving grid lines for #vision */
+#vision.content-section::after {
+    background-image:
+        linear-gradient(rgba(137, 166, 212, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(137, 166, 212, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px; /* Larger grid */
+    animation: slow-pan-grid 45s linear infinite;
+    opacity: 0.8;
+}
+
+/* New background style for other sections: Data Stream */
+/* Apply by adding class="content-section data-stream-bg" to a section in your HTML */
+.data-stream-bg { /* This class should be added ALONGSIDE .content-section */
+    background: #0A0E1B !important; /* Dark base, !important to override .content-section gradient */
+    overflow: hidden !important;
+    border: 1px solid rgba(96, 130, 182, 0.1) !important; /* Different accent border */
+}
+
+.data-stream-bg::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 24px; /* Match parent */
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(35deg,
+            rgba(70, 170, 225, 0.06), /* Slightly more visible */
+            rgba(70, 170, 225, 0.06) 1px,
+            transparent 1px,
+            transparent 35px), /* Adjusted density */
+        repeating-linear-gradient(-35deg,
+            rgba(137, 166, 212, 0.04) 0px,
+            rgba(137, 166, 212, 0.04) 1px,
+            transparent 1px,
+            transparent 35px);
+    animation: data-stream-flow 20s linear infinite; /* Using updated keyframe */
+}
+
+/* The Why Section with Coin */
+.vision-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.vision-image {
+    flex: 0 0 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vision-text {
+    flex: 1;
+    text-align: left; /* Ensure text within this container is left-aligned */
+}
+
+.vision-text p {
+    /* text-align: left; Re-evaluate if needed, parent now handles alignment */
+}
+
+.floating-coin {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+    animation: float 6s ease-in-out infinite, glow 3s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+}
+
+.floating-coin:hover {
+    transform: scale(1.08) rotate(5deg);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+    to {
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 185, 255, 0.4);
+    }
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .vision-container {
+        flex-direction: column;
+        /* text-align: center; Re-evaluate if needed for mobile */
+    }
+    
+    .vision-image {
+        margin-bottom: 2rem;
+    }
+    
+    .floating-coin {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Added to ensure paragraphs in #qkn are left-aligned */
+#qkn p {
+    text-align: left;
+}
+
+/* Ensure paragraphs in #vision .vision-text are left-aligned */
+#vision .vision-text p {
+    text-align: left;
+}
