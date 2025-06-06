@@ -1371,3 +1371,189 @@ footer {
         padding: 2rem 1.5rem;
     }
 }
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #F0F0F0;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Enhanced Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: rgba(28, 37, 65, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 80px 20px 20px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 12px 15px;
+        font-size: 1.1rem;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .logo img#logo-img {
+        height: 40px;
+    }
+
+    #hero {
+        padding: 8rem 1rem 4rem;
+    }
+
+    .hero-content {
+        padding: 3rem 1.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content .text-panel {
+        padding: 1.5rem;
+    }
+
+    .hero-content .text-panel p {
+        font-size: 1rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .cta-button, .cta-button-secondary {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+
+    .concept-grid, .roadmap-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .concept-item, .roadmap-item {
+        padding: 20px;
+    }
+
+    .vision-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .vision-image {
+        margin-bottom: 30px;
+    }
+
+    .floating-coin {
+        width: 150px;
+        height: 150px;
+    }
+
+    .roadmap-timeline {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .timeline-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .investment-form input[type="email"] {
+        width: 100%;
+        padding: 15px;
+        font-size: 1rem;
+    }
+
+    .investment-form button {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .section-divider {
+        margin: 40px 0;
+    }
+
+    .divider-logo-img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Additional breakpoint for very small devices */
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .concept-item h3, .roadmap-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) {
+    .concept-item:hover,
+    .roadmap-item:hover,
+    .timeline-item:hover {
+        transform: none;
+    }
+
+    .cta-button:active,
+    .cta-button-secondary:active {
+        transform: scale(0.98);
+    }
+
+    .nav-links a:active {
+        background-color: #89A6D4;
+    }
+}

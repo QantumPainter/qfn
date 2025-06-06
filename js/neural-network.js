@@ -13,6 +13,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Optional: Add some dynamic floating nodes for a more interactive effect
     createNeuralNodes();
+
+    // Mobile Menu Functionality
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links a');
+
+    // Toggle mobile menu
+    mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        this.classList.toggle('active');
+    });
+
+    // Close menu when clicking a link
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+        }
+    });
 });
 
 function createNeuralNodes() {
