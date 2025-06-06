@@ -191,7 +191,7 @@ nav {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 8rem 2rem 4rem; /* Adjusted bottom padding */
+    padding: 10rem 2rem 6rem; /* Increased top and bottom padding */
     position: relative;
     background-color: #1C2541; /* Fallback, Vanta will overlay this */
     overflow: visible; /* Changed from hidden to allow glow to extend downwards */
@@ -219,17 +219,19 @@ nav {
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 1100px;
+    max-width: 1200px; /* Increased max width for better use of space */
+    width: 100%;
     background-color: rgba(28, 37, 65, 0.75);
-    padding: 4rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 35px 0 rgba(0, 0, 0, 0.4);
+    padding: 5rem 4rem 4rem; /* Increased top padding */
+    border-radius: 20px; /* Slightly more rounded */
+    box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.5); /* Enhanced shadow */
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(10px); /* Added backdrop blur for modern feel */
 }
 
 .hero-logo {
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 3rem; /* Increased bottom margin */
     display: flex;
     justify-content: center;
     position: relative;
@@ -278,22 +280,47 @@ nav {
 }
 
 .hero-content .title-group {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem; /* Increased spacing after titles */
 }
 
-/* New styles for the text panel */
+/* Enhanced styles for the text panel */
 .hero-content .text-panel {
-    background: rgba(70, 170, 225, 0.1);
-    border: 1px solid rgba(70, 170, 225, 0.2);
-    border-radius: 12px;
-    padding: 2rem;
-    margin: 0 auto;
+    background: rgba(70, 170, 225, 0.08); /* Slightly lighter background */
+    border: 1px solid rgba(70, 170, 225, 0.25); /* More visible border */
+    border-radius: 16px; /* More rounded corners */
+    padding: 3rem 3rem; /* Increased padding for more breathing room */
+    margin: 0 auto 4rem; /* Increased bottom margin */
     width: 100%;
-    max-width: 900px;
-    backdrop-filter: blur(5px);
+    max-width: 950px; /* Slightly wider max width */
+    backdrop-filter: blur(8px); /* Enhanced blur effect */
     box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.2),
-        inset 0 0 50px rgba(70, 170, 225, 0.05);
+        0 8px 32px rgba(0, 0, 0, 0.3), /* Deeper shadow */
+        inset 0 0 60px rgba(70, 170, 225, 0.08); /* Subtle inner glow */
+    position: relative;
+}
+
+/* Add a subtle animated border effect */
+.hero-content .text-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(70, 170, 225, 0.3), rgba(137, 166, 212, 0.2), rgba(70, 170, 225, 0.3));
+    border-radius: 16px;
+    padding: 2px;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    z-index: -1;
+    opacity: 0.6;
+    animation: border-flow 8s linear infinite;
+}
+
+@keyframes border-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .hero-content .text-panel p {
@@ -303,37 +330,39 @@ nav {
 }
 
 .hero-content .text-panel p:first-child {
-    font-size: 1.4rem;
+    font-size: 1.5rem; /* Slightly larger font */
     color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem; /* Increased spacing between paragraphs */
     font-weight: 300;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em; /* Slightly more letter spacing */
+    line-height: 1.6; /* Better line height */
 }
 
 .hero-content .text-panel p:last-child {
-    font-size: 1.25rem;
+    font-size: 1.3rem; /* Slightly larger font */
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.7;
     font-weight: 300;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em; /* Better letter spacing */
 }
 
-/* Update button spacing */
+/* Update button spacing and styling */
 .hero-content .cta-buttons {
-    margin-top: 3rem;
+    margin-top: 0; /* Remove extra margin since text panel now has bottom margin */
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem; /* Increased gap between buttons */
     justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .hero-content h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 3.2rem;
+    font-size: 3.4rem; /* Slightly larger */
     margin: 0;
     color: #FFFFFF;
     text-shadow: 0 0 10px #89A6D4, 0 0 18px #89A6D4, 0 0 3px #FFFFFF;
     animation: pulse-glow 2s infinite alternate;
-    line-height: 1.2;
+    line-height: 1.3; /* Improved line height */
 }
 
 /* Add specific styling for REALITY and VALUE */
@@ -348,64 +377,88 @@ nav {
 }
 
 .hero-content h2 + h2 {
-    margin-top: 0.5rem; /* Space between the two headings */
+    margin-top: 0.8rem; /* Slightly more space between the two headings */
 }
 
-.hero-content p {
-    font-size: 1.35rem;
-    color: #E0E0E0;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-    opacity: 0.9;
-}
-
-.hero-content p + p {
-    margin-top: 1rem; /* Space between paragraphs */
-}
-
-/* Add spacing before the buttons */
-.hero-content .cta-button,
-.hero-content .cta-button-secondary {
-    margin-top: 2rem; /* Increased space before buttons */
-}
-
+/* Improved button styles */
 .cta-button, .cta-button-secondary {
-    display: inline-block;
-    padding: 1.1rem 2.8rem; /* Slightly larger buttons */
-    margin: 0.75rem; /* Adjusted margin */
-    border-radius: 30px;
+    padding: 1rem 2.5rem; /* Increased padding */
+    font-size: 1.1rem; /* Slightly larger font */
+    border-radius: 30px; /* More rounded */
+    font-weight: 600;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .cta-button {
-    background-color: #89A6D4; /* Lighter Blue Accent */
+    background: linear-gradient(135deg, #89A6D4 0%, #6082B6 100%);
     color: #FFFFFF;
-    box-shadow: 0 0 12px #89A6D4, inset 0 0 5px rgba(255,255,255,0.1);
+    border: 2px solid transparent;
 }
 
 .cta-button:hover {
-    background-color: #6082B6; /* Darker hover */
-    color: #FFFFFF;
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 0 20px #89A6D4, 0 0 8px #FFFFFF, inset 0 0 8px rgba(255,255,255,0.15);
+    background: linear-gradient(135deg, #6082B6 0%, #89A6D4 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(137, 166, 212, 0.4);
 }
 
 .cta-button-secondary {
-    background-color: transparent;
-    color: #89A6D4; /* Lighter Blue Accent */
-    border-color: #89A6D4;
+    background: transparent;
+    color: #89A6D4;
+    border: 2px solid #89A6D4;
 }
 
 .cta-button-secondary:hover {
-    background-color: #89A6D4;
-    color: #FFFFFF;
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 0 12px #89A6D4;
+    background: rgba(137, 166, 212, 0.1);
+    color: #AEC9E8;
+    border-color: #AEC9E8;
+    transform: translateY(-2px);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    #hero {
+        padding: 8rem 1.5rem 4rem;
+    }
+    
+    .hero-content {
+        padding: 3rem 2rem 2.5rem;
+        max-width: 95%;
+    }
+    
+    .hero-content .text-panel {
+        padding: 2rem 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content .text-panel p:first-child {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-content .text-panel p:last-child {
+        font-size: 1.1rem;
+    }
+    
+    .hero-content .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .cta-button, .cta-button-secondary {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        width: 100%;
+        max-width: 280px;
+    }
 }
 
 /* Section Dividers */
@@ -1161,4 +1214,160 @@ footer {
 /* Ensure paragraphs in #vision .vision-text are left-aligned */
 #vision .vision-text p {
     text-align: left;
+}
+
+/* Roadmap Timeline */
+.roadmap-timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 3rem auto 0;
+    position: relative;
+    padding: 0 2rem;
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        rgba(137, 166, 212, 0.2),
+        rgba(137, 166, 212, 0.6) 50%,
+        rgba(137, 166, 212, 0.2)
+    );
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    background: rgba(28, 37, 65, 0.9);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(137, 166, 212, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(137, 166, 212, 0.3);
+    border-color: rgba(137, 166, 212, 0.5);
+}
+
+.timeline-date {
+    font-family: 'Orbitron', sans-serif;
+    color: #89A6D4;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px rgba(137, 166, 212, 0.4);
+}
+
+.timeline-phase {
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Update existing roadmap styles */
+.roadmap-grid {
+    margin-bottom: 2rem;
+}
+
+.roadmap-item {
+    background-color: rgba(58, 80, 107, 0.55);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(137, 166, 212, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.roadmap-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(137, 166, 212, 0.2);
+    border-color: rgba(137, 166, 212, 0.5);
+}
+
+.roadmap-item h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #89A6D4;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-shadow: 0 0 8px rgba(137, 166, 212, 0.4);
+    border-bottom: 1px solid rgba(137, 166, 212, 0.3);
+    padding-bottom: 0.8rem;
+}
+
+.roadmap-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.roadmap-item li {
+    margin-bottom: 1rem;
+    color: #D0D0D0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.8rem;
+}
+
+.roadmap-item li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #89A6D4;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.roadmap-item li:hover::before {
+    transform: translateX(5px);
+}
+
+/* Responsive adjustments for roadmap */
+@media (max-width: 768px) {
+    .roadmap-timeline {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0;
+    }
+
+    .roadmap-timeline::before {
+        width: 2px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        background: linear-gradient(
+            180deg,
+            rgba(137, 166, 212, 0.2),
+            rgba(137, 166, 212, 0.6) 50%,
+            rgba(137, 166, 212, 0.2)
+        );
+    }
+
+    .timeline-item {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .roadmap-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .roadmap-item {
+        padding: 2rem 1.5rem;
+    }
 }
