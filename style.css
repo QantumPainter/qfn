@@ -1025,29 +1025,124 @@ footer {
     100% { background-position: -160px 0px; transform: skewX(0deg); opacity: 0.5; }
 }
 
-/* Responsive Adjustments */
+/* Mobile Performance Optimizations - Reduce animations for better performance */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none; /* Will implement a mobile menu later if needed */
+    /* Disable heavy background animations on mobile */
+    body::before,
+    body::after,
+    .neural-overlay,
+    .neural-connections {
+        display: none !important;
     }
-    .logo h1 {
-        font-size: 1.5rem;
+
+    /* Simplify animations for mobile */
+    .hero-logo::before,
+    .divider-logo::before,
+    .cta-logo::before {
+        animation: none !important;
     }
-    .hero-content h2 {
-        font-size: 2.2rem;
+
+    /* Reduce glow effects on mobile */
+    .logo img#logo-img,
+    .hero-logo-img,
+    .divider-logo-img,
+    .cta-logo-img,
+    .footer-logo-img,
+    .floating-coin {
+        filter: none !important;
+        box-shadow: none !important;
+        animation: none !important;
     }
-    .hero-content p {
-        font-size: 1rem;
+
+    /* Simplify text shadows on mobile */
+    .logo h1,
+    .hero-content h2,
+    .content-section h2,
+    .cta-section h2,
+    .timeline-date,
+    .roadmap-item h3,
+    .concept-item h3 {
+        text-shadow: none !important;
+        animation: none !important;
     }
-    .content-section h2, .cta-section h2 {
-        font-size: 2rem;
+
+    /* Remove complex gradients and use solid colors on mobile */
+    .hero-content {
+        background-color: rgba(28, 37, 65, 0.9) !important;
+        backdrop-filter: none !important;
     }
-    .cta-button, .cta-button-secondary {
-        padding: 0.8rem 1.8rem;
-        font-size: 1rem;
+
+    .content-section {
+        background: #1C2541 !important;
+        box-shadow: none !important;
     }
-    .concept-grid, .roadmap-grid {
-        grid-template-columns: 1fr;
+
+    #vision.content-section {
+        background: #1C2541 !important;
+    }
+
+    #vision.content-section::before,
+    #vision.content-section::after {
+        display: none !important;
+    }
+
+    .data-stream-bg::before {
+        display: none !important;
+    }
+
+    /* Simplify borders and effects */
+    .hero-content .text-panel::before {
+        display: none !important;
+    }
+
+    .hero-content .text-panel {
+        background: rgba(70, 170, 225, 0.1) !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Remove hover effects on mobile */
+    .concept-item:hover,
+    .roadmap-item:hover,
+    .timeline-item:hover,
+    .floating-coin:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Simplify section dividers */
+    .section-divider {
+        margin: 20px 0 !important;
+    }
+
+    .divider-line {
+        background: rgba(137, 166, 212, 0.3) !important;
+    }
+
+    /* Remove pulsing animations from hero bottom */
+    #hero::after {
+        animation: none !important;
+        box-shadow: 0 2px 8px rgba(70, 170, 225, 0.3) !important;
+    }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Disable all background animations */
+    body::before,
+    body::after,
+    .neural-overlay,
+    .neural-connections {
+        display: none !important;
     }
 }
 
@@ -1544,7 +1639,8 @@ footer {
 @media (hover: none) {
     .concept-item:hover,
     .roadmap-item:hover,
-    .timeline-item:hover {
+    .timeline-item:hover,
+    .floating-coin:hover {
         transform: none;
     }
 
