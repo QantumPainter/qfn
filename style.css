@@ -1653,3 +1653,47 @@ footer {
         background-color: #89A6D4;
     }
 }
+
+/* Mobile Hero Background - Clean and Simple */
+.mobile-hero-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(137, 166, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(70, 170, 225, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, #1C2541 0%, #0A0F1A 50%, #1C2541 100%);
+    z-index: -1;
+}
+
+/* Ensure mobile hero content stays above background */
+.mobile-hero-bg .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 768px) {
+    /* Ensure Vanta canvas doesn't interfere on mobile */
+    #hero canvas {
+        display: none !important;
+    }
+    
+    /* Make sure mobile background takes precedence */
+    .mobile-hero-bg {
+        background: linear-gradient(135deg, #1C2541 0%, #0A0F1A 50%, #1C2541 100%) !important;
+    }
+    
+    /* Simplify mobile hero section */
+    #hero {
+        background-attachment: scroll !important; /* Better performance than fixed */
+    }
+}

@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if device is mobile
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .cta-button-nav[href^="#"], .hero-content a[href^="#"]');
@@ -19,13 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize Vanta.js WAVES effect
+    // Initialize Vanta.js WAVES effect ONLY on desktop
     const heroSection = document.getElementById('hero');
-    if (heroSection && typeof VANTA !== 'undefined') {
+    if (heroSection && typeof VANTA !== 'undefined' && !isMobile && !prefersReducedMotion) {
         VANTA.WAVES({
             el: "#hero",
             mouseControls: true,
-            touchControls: true,
+            touchControls: false, // Disabled for better performance
             gyroControls: false,
             minHeight: 200.00,
             minWidth: 200.00,
@@ -37,6 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
             waveSpeed: 0.55,    // From image
             zoom: 0.80          // From image (slider value)
         });
+    } else if (heroSection && isMobile) {
+        // Create simple, clean background for mobile
+        heroSection.style.background = 'linear-gradient(135deg, #1C2541 0%, #0A0F1A 50%, #1C2541 100%)';
+        heroSection.classList.add('mobile-hero-bg');
     }
 
     // Email subscription form handling
@@ -67,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return re.test(String(email).toLowerCase());
     }
 
-    // Scroll animations for sections (fade-in effect)
+    // Simplified scroll animations for mobile (or disabled entirely)
     const sections = document.querySelectorAll('.content-section, .cta-section');
     const observerOptions = {
         root: null,
@@ -78,18 +85,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
+                if (isMobile || prefersReducedMotion) {
+                    // Instant reveal on mobile for performance
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                } else {
+                    // Smooth animation on desktop
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
                 // observer.unobserve(entry.target); // Optional: stop observing once animated
             }
         });
     }, observerOptions);
 
     sections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(30px)';
-        section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        if (isMobile || prefersReducedMotion) {
+            // No initial transform on mobile
+            section.style.opacity = 1;
+            section.style.transform = 'translateY(0)';
+        } else {
+            // Desktop gets the smooth fade-in effect
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        }
         observer.observe(section);
+    });
+
+    // Listen for resize to handle orientation changes
+    window.addEventListener('resize', function() {
+        const newIsMobile = window.innerWidth <= 768;
+        if (newIsMobile && heroSection && !heroSection.classList.contains('mobile-hero-bg')) {
+            // Switch to mobile background if window becomes mobile-sized
+            heroSection.style.background = 'linear-gradient(135deg, #1C2541 0%, #0A0F1A 50%, #1C2541 100%)';
+            heroSection.classList.add('mobile-hero-bg');
+        }
     });
 
 }); 
