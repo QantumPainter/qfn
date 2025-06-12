@@ -3,9 +3,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Mobile Menu Functionality
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+            
+            // Animate hamburger icon
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            spans.forEach((span, index) => {
+                if (mobileMenuBtn.classList.contains('active')) {
+                    if (index === 0) span.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    if (index === 1) span.style.opacity = '0';
+                    if (index === 2) span.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                } else {
+                    span.style.transform = '';
+                    span.style.opacity = '';
+                }
+            });
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                
+                // Reset hamburger icon
+                const spans = mobileMenuBtn.querySelectorAll('span');
+                spans.forEach(span => {
+                    span.style.transform = '';
+                    span.style.opacity = '';
+                });
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                
+                // Reset hamburger icon
+                const spans = mobileMenuBtn.querySelectorAll('span');
+                spans.forEach(span => {
+                    span.style.transform = '';
+                    span.style.opacity = '';
+                });
+            }
+        });
+    }
+
     // Smooth scrolling for navigation links
-    const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .cta-button-nav[href^="#"], .hero-content a[href^="#"]');
-    navLinks.forEach(link => {
+    const navLinksAll = document.querySelectorAll('.nav-links a[href^="#"], .cta-button-nav[href^="#"], .hero-content a[href^="#"]');
+    navLinksAll.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             let targetId = this.getAttribute('href');
@@ -121,6 +175,110 @@ document.addEventListener('DOMContentLoaded', () => {
             heroSection.style.background = 'linear-gradient(135deg, #1C2541 0%, #0A0F1A 50%, #1C2541 100%)';
             heroSection.classList.add('mobile-hero-bg');
         }
+        
+        // Close mobile menu on resize
+        if (window.innerWidth > 768) {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            
+            // Reset hamburger icon
+            const spans = mobileMenuBtn.querySelectorAll('span');
+            spans.forEach(span => {
+                span.style.transform = '';
+                span.style.opacity = '';
+            });
+        }
     });
 
+});
+
+// Presale Portal Functions
+function copyWalletAddress() {
+    const walletAddress = document.getElementById('wallet-address').textContent;
+    navigator.clipboard.writeText(walletAddress).then(function() {
+        // Show success message
+        const copyBtn = document.querySelector('.copy-btn');
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = '✅ Copied!';
+        copyBtn.style.background = '#00ff88';
+        
+        setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.style.background = '';
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Could not copy text: ', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = walletAddress;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        const copyBtn = document.querySelector('.copy-btn');
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = '✅ Copied!';
+        copyBtn.style.background = '#00ff88';
+        
+        setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.style.background = '';
+        }, 2000);
+    });
+}
+
+function showPaymentDetails() {
+    // Scroll to payment section
+    const paymentSection = document.querySelector('.payment-section');
+    if (paymentSection) {
+        paymentSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'center'
+        });
+        
+        // Highlight the wallet address
+        const walletDiv = document.querySelector('.wallet-address');
+        if (walletDiv) {
+            walletDiv.classList.add('highlight-pulse');
+            setTimeout(() => {
+                walletDiv.classList.remove('highlight-pulse');
+            }, 3000);
+        }
+    }
+}
+
+// Add some interactive animations for the presale portal
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate success stories on scroll
+    const successItems = document.querySelectorAll('.success-item');
+    const successObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                }, index * 200);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    successItems.forEach(item => {
+        successObserver.observe(item);
+    });
+
+    // Animate vesting timeline
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('timeline-animate');
+                }, index * 300);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    timelineItems.forEach(item => {
+        timelineObserver.observe(item);
+    });
 }); 
