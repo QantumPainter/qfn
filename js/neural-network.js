@@ -21,34 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         createNeuralNodes();
     }
 
-    // Mobile Menu Functionality (always needed)
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-links a');
-
-    if (mobileMenuBtn && navLinks) {
-        // Toggle mobile menu
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            this.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        navItems.forEach(item => {
-            item.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.classList.remove('active');
-            }
-        });
-    }
+    // Removed duplicate mobile menu functionality (handled in script.js)
 
     // Listen for resize events to disable animations if window becomes too small
     window.addEventListener('resize', function() {

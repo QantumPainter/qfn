@@ -1,3 +1,124 @@
+/* =============================================
+   Performance Optimizations (Added for Speed)
+   ============================================= */
+   
+/* Enable hardware acceleration for smoother animations */
+* {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/* Optimize will-change for animated elements */
+.hero-logo::before,
+.divider-logo::before,
+.concept-item,
+.floating-coin,
+.status-badge,
+.main-cta {
+    will-change: transform, opacity;
+}
+
+/* Reduce animation complexity on lower-end devices */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.1s !important;
+        transition-duration: 0.1s !important;
+    }
+    
+    /* Disable resource-heavy animations */
+    .hero-logo::before,
+    .divider-logo::before,
+    .cta-logo::before,
+    body::before,
+    body::after,
+    .neural-overlay {
+        animation: none !important;
+        display: none !important;
+    }
+}
+
+/* Optimize images */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* End Performance Optimizations --------------------------------- */
+
+/* =============================================
+   Spacing & Layout Cleanup Overrides (June 2025)
+   ---------------------------------------------
+   This block introduces global spacing variables
+   and unifies vertical rhythm across the site
+   without touching the original styles above.
+   ============================================= */
+:root {
+    /* Master vertical spacing units */
+    --space-section-desktop: 6rem; /* 96px */
+    --space-section-mobile: 4rem;  /* 64px */
+    --space-inline: 2rem;          /* Generic horizontal padding */
+}
+
+/* Unified section padding */
+.content-section,
+.cta-section,
+#hero {
+    padding-top: var(--space-section-desktop);
+    padding-bottom: var(--space-section-desktop);
+    padding-left: var(--space-inline);
+    padding-right: var(--space-inline);
+}
+
+/* Ensure hero looks tighter on first view */
+#hero {
+    padding-top: calc(var(--space-section-desktop) + 2rem);
+}
+
+/* Consistent margin around the decorative divider */
+.section-divider {
+    margin-top: var(--space-section-desktop);
+    margin-bottom: var(--space-section-desktop);
+}
+
+/* Harmonise heading spacing inside any general section */
+.content-section h2,
+.cta-section h2,
+#hero .title-group {
+    margin-top: 0;
+    margin-bottom: 2.5rem; /* Same rhythm for headings */
+}
+
+/* Text paragraph tweaks for better readability */
+.content-section p,
+.cta-section p,
+#hero .text-panel p {
+    margin-bottom: 1.5rem;
+}
+
+/* Divider visuals refined: thinner lines on mobile */
+.divider-line {
+    height: 1px;
+}
+
+@media (max-width: 768px) {
+    .content-section,
+    .cta-section,
+    #hero {
+        padding-top: var(--space-section-mobile);
+        padding-bottom: var(--space-section-mobile);
+    }
+    .section-divider {
+        margin-top: var(--space-section-mobile);
+        margin-bottom: var(--space-section-mobile);
+    }
+}
+
+/* End Spacing & Layout Cleanup --------------------------------- */
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
